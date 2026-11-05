@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+
+# builds
+build/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Android local state
+android/local.properties
+android/.gradle/
+android/app/build/
+
+# media/dev artifacts
+tools/ffmpeg.exe
+tools/ffmpeg.zip
+tools/ffprobe.exe
+tools/trailer-frames/
+tools/trailer-out/
+tools/trailer-check/
+tools/shots/
+tools/icon-sheets/
+tools/*.png
+tools/*.jpg
+tools/*.log
+tools/device-matrix.json
+tools/e2e-report.json
+tools/DEVICE_MATRIX.full.md
+tools/device-matrix.full.json
+
+# source asset packs (large, licensed; derived assets live in game/assets)
+res/
+
+# OS/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

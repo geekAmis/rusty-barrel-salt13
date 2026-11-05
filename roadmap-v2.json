@@ -1,0 +1,349 @@
+{
+  "version": "2.0",
+  "title": "РЖАВАЯ БОЧКА: СОЛЬ-13 — глобальное обновление",
+  "updated": "2026-11-05",
+  "status": "complete alpha 2.0",
+  "current": "V012",
+  "next": [],
+  "tasks": [
+    {
+      "id": "V001",
+      "title": "Предметы и модель инвентаря",
+      "status": "done",
+      "acceptance": "Каждый подбор/покупка создаёт предмет в сетчатом инвентаре; предметы имеют размер, стак, тип и эффект.",
+      "files": [
+        "game/js/items.js",
+        "game/js/inventory.js"
+      ],
+      "verified": true,
+      "note": "items.js: 100+ предметов, размеры, стаки, эффекты; inventory.js helpers (RB.Inv).",
+      "evidence": "game/js/items.js; game/js/inventory.js"
+    },
+    {
+      "id": "V002",
+      "title": "Tarkov-инвентарь и экипировка",
+      "status": "done",
+      "acceptance": "Сетка рюкзака 5×3, карманы 2×2, слоты оружия/брони/одежды; перенос, использование, выбрасывание, смена одежды вплоть до гола.",
+      "files": [
+        "game/js/ui.js",
+        "game/css/style.css",
+        "game/index.html"
+      ],
+      "verified": true,
+      "note": "Tarkov-сетка 5×3 + карманы 2×2, слоты оружия/брони/одежды/РПС, перенос, использование, выброс, снятие.",
+      "evidence": "game/js/ui.js; game/css/style.css; game/index.html"
+    },
+    {
+      "id": "V003",
+      "title": "Магазины и патроны",
+      "status": "done",
+      "acceptance": "Патроны лежат отдельно, магазины — отдельные предметы; перезарядка возможна только через снаряжённый магазин.",
+      "files": [
+        "game/js/items.js",
+        "game/js/game.js",
+        "game/js/platformer.js"
+      ],
+      "verified": true,
+      "note": "Магазины отдельными предметами, патроны в стаках, зарядка магазинов, совместимость по family.",
+      "evidence": "game/js/items.js; game/js/game.js; game/js/platformer.js"
+    },
+    {
+      "id": "V004",
+      "title": "Крафт, напалм и рецепты",
+      "status": "done",
+      "acceptance": "Рецепты находятся/покупаются; топливо огнемёта — бензин + красный фосфор + серебрянка; альтернативный рецепт напалма.",
+      "files": [
+        "game/js/items.js",
+        "game/js/craft.js",
+        "game/js/story.js"
+      ],
+      "verified": true,
+      "note": "Рецепты в предметах/магазине, крафт у стола, напалм и топливо (бензин+фосфор+серебрянка), альтернативный напалм.",
+      "evidence": "game/js/items.js; game/js/craft.js; game/js/story.js"
+    },
+    {
+      "id": "V005",
+      "title": "NPC: уровни, валюта, торговля",
+      "status": "done",
+      "acceptance": "У NPC уровень и сид-зависимая валюта; диалог позволяет торговать и торговаться.",
+      "files": [
+        "game/js/game.js",
+        "game/js/story.js",
+        "game/js/ui.js"
+      ],
+      "verified": true,
+      "note": "NPC: уровень и валюта от сида, торговля, продажа, торг со скидкой.",
+      "evidence": "game/js/game.js; game/js/story.js; game/js/ui.js"
+    },
+    {
+      "id": "V006",
+      "title": "STALKER-диалоги и документы",
+      "status": "done",
+      "acceptance": "Диалоги, записки и слайды — единое окно в стилистике STALKER: портрет, имя, текст с печатной машинкой, нумерованные варианты.",
+      "files": [
+        "game/js/ui.js",
+        "game/css/style.css"
+      ],
+      "verified": true,
+      "note": "STALKER-окна: портрет, имя, уровень/валюта, нумерованные варианты, печатная машинка в документах.",
+      "evidence": "game/js/ui.js; game/css/style.css"
+    },
+    {
+      "id": "V007",
+      "title": "Интерактивная карта с туманом войны",
+      "status": "done",
+      "acceptance": "Карта скрыта до первого входа; при входе фиксирует комнату, врагов, NPC и предметы; сюжетная цель видна всегда; панорама и зум.",
+      "files": [
+        "game/js/map.js",
+        "game/js/ui.js",
+        "game/js/game.js"
+      ],
+      "verified": true,
+      "note": "Карта с туманом войны, первое посещение фиксирует комнату/врагов/NPC/предметы, цель всегда сверху, пан/зум.",
+      "evidence": "game/js/map.js; game/js/ui.js; game/js/game.js"
+    },
+    {
+      "id": "V008",
+      "title": "Тайники и отмычки",
+      "status": "done",
+      "acceptance": "Тайники в комнатах открываются мини-игрой с отмычкой в духе Skyrim; отмычка ломается, сложность зависит от тайника.",
+      "files": [
+        "game/js/minigames.js",
+        "game/js/platformer.js",
+        "game/js/game.js"
+      ],
+      "verified": true,
+      "note": "Тайники в комнатах и изо, мини-игра отмычки, поломка отмычек, лут по сложности.",
+      "evidence": "game/js/minigames.js; game/js/platformer.js; game/js/game.js"
+    },
+    {
+      "id": "V009",
+      "title": "Смерть: пожирание и бочка",
+      "status": "done",
+      "acceptance": "Монстр рывком валит героя, играет анимация пожирания/закатывания в бочку с солью, кровью и тряской.",
+      "files": [
+        "game/js/deathanim.js",
+        "game/js/game.js",
+        "game/js/story.js"
+      ],
+      "verified": true,
+      "note": "Анимации пожирания, закатывания в бочку и удушья; кровь, тряска, corpse-слой.",
+      "evidence": "game/js/deathanim.js; game/js/game.js; game/js/story.js"
+    },
+    {
+      "id": "V010",
+      "title": "Гуманоидный герой и одежда",
+      "status": "done",
+      "acceptance": "Герой — пропорциональный гуманоид с анимациями idle/walk/run/aim/hurt/death; одежда меняет слои, можно раздеть.",
+      "files": [
+        "game/js/pixel-render.js",
+        "game/js/sprites.js"
+      ],
+      "verified": true,
+      "note": "Гуманоид с пропорциями, анимациями idle/walk/run/aim/hurt/death; слои одежды, вплоть до гола.",
+      "evidence": "game/js/pixel-render.js; game/js/sprites.js"
+    },
+    {
+      "id": "V011",
+      "title": "Сейвы v3 и миграция",
+      "status": "done",
+      "acceptance": "Инвентарь, экипировка, изученные комнаты и рецепты сохраняются; старые сейвы мигрируют.",
+      "files": [
+        "game/js/game.js"
+      ],
+      "verified": true,
+      "note": "Сейв v3: инвентарь, экипировка, NPC-экономика, изученные комнаты; миграция старых сейвов.",
+      "evidence": "game/js/game.js"
+    },
+    {
+      "id": "V012",
+      "title": "Тесты, устройство и alpha 2.0",
+      "status": "done",
+      "acceptance": "E2E и матрица телефона проходят; alpha 2.0 собрана и установлена.",
+      "files": [
+        "tools/"
+      ],
+      "verified": true,
+      "note": "E2E 66/66, матрица устройств 42/42, alpha 2.0.0-alpha собрана и установлена на TECNO KL6.",
+      "evidence": "tools/"
+    },
+    {
+      "id": "V013",
+      "title": "Гардероб: 14 головных уборов, 10 футболок, 7 кофт, 4 куртки",
+      "status": "done",
+      "priority": 6,
+      "acceptance": "Все вещи существуют как предметы с иконками, слоями на гуманоиде, отображением на земле и в инвентаре; можно снять всё до гола.",
+      "files": [
+        "game/js/items.js",
+        "game/js/pixel-render.js",
+        "game/js/inventory.js"
+      ],
+      "verified": true,
+      "note": "14 головных уборов, 10 футболок, 7 кофт, 4 куртки; иконки, слои, мировые дропы.",
+      "evidence": "game/js/items.js; game/js/pixel-render.js; game/js/inventory.js"
+    },
+    {
+      "id": "V014",
+      "title": "Гардероб: 16 штанов и 6 ботинок",
+      "status": "done",
+      "priority": 6,
+      "acceptance": "16 вариантов штанов и 6 ботинок, разные силуэты/цвета, слои на персонаже, иконки и мировые дропы.",
+      "files": [
+        "game/js/items.js",
+        "game/js/pixel-render.js"
+      ],
+      "verified": true,
+      "note": "16 штанов и 6 ботинок; цвета, силуэты, экипировка.",
+      "evidence": "game/js/items.js; game/js/pixel-render.js"
+    },
+    {
+      "id": "V015",
+      "title": "Броня: 3 шлема, 3 бронежилета, 4 РПС",
+      "status": "done",
+      "priority": 6,
+      "acceptance": "РПС — отдельный слот с иконкой, отображением на земле и на персонаже; броня меняет силуэт и защиту.",
+      "files": [
+        "game/js/items.js",
+        "game/js/pixel-render.js",
+        "game/js/ui.js"
+      ],
+      "verified": true,
+      "note": "3 шлема, 3 бронежилета, 4 РПС; слот, иконка, отображение на земле и на персонаже.",
+      "evidence": "game/js/items.js; game/js/pixel-render.js; game/js/ui.js"
+    },
+    {
+      "id": "V016",
+      "title": "Патроны: бронебойные, трассирующие, дробь, пуля, зажигательные",
+      "status": "done",
+      "priority": 4,
+      "acceptance": "Для ПМ и АК — бронебойные и трассирующие; для дробовика — дробь, пуля, зажигательные; разные урон/пробитие/цвет трассера; совместимость с магазинами.",
+      "files": [
+        "game/js/items.js",
+        "game/js/weapons.js",
+        "game/js/platformer.js"
+      ],
+      "verified": true,
+      "note": "9×18 и 5.45: бронебойные/трассирующие; 12К: дробь/пуля/зажигательные; урон, пробитие, трассер, горение.",
+      "evidence": "game/js/items.js; game/js/weapons.js; game/js/platformer.js"
+    },
+    {
+      "id": "V017",
+      "title": "Анимации монстров: атака, смерть, гарпун, поиск головы, ползание",
+      "status": "done",
+      "priority": 8,
+      "acceptance": "Атака руками/оружием/укусом, смерть, прибивание гарпуном к полу/стене и попытки выбраться, бег/ходьба, поиск головы на корточках, ползание без ног.",
+      "files": [
+        "game/js/pixel-render.js",
+        "game/js/entities.js",
+        "game/js/platformer.js"
+      ],
+      "verified": true,
+      "note": "Атака с замахом (рука/оружие/укус), смерть с трупом, гарпун с борьбой, бег/ходьба, поиск головы на корточках, ползание.",
+      "evidence": "game/js/pixel-render.js; game/js/entities.js; game/js/platformer.js"
+    },
+    {
+      "id": "V018",
+      "title": "Наркотики: полное восстановление, зависимость, передозировка",
+      "status": "done",
+      "priority": 7,
+      "acceptance": "1-я доза лечит всё; со 2-й — кап 30%, запрет бега, -0.1 HP/12с; новая доза снимает на 10 мин, затем кап 32/34/36%; досрочная — +15% ограничения, x2 HP и урон; 3-я — смерть с анимацией удушья.",
+      "files": [
+        "game/js/game.js",
+        "game/js/platformer.js",
+        "game/js/deathanim.js"
+      ],
+      "verified": true,
+      "note": "Дозы: полное восстановление, кап 30%, -0.1 HP/12с, приход 10 мин, 32/34/36%, досрочная +15% и x2 HP/урон, третья — удушье.",
+      "evidence": "game/js/game.js; game/js/platformer.js; game/js/deathanim.js"
+    },
+    {
+      "id": "V019",
+      "title": "Ворота босса: ключ, провал переговоров, главный квест, только изометрия",
+      "status": "done",
+      "priority": 5,
+      "acceptance": "Бой с боссом открыт только при ключе, проваленной попытке договориться и выполненном главном квесте; арена и бой — изометрический мир.",
+      "files": [
+        "game/js/game.js",
+        "game/js/story.js",
+        "game/js/iso.js"
+      ],
+      "verified": true,
+      "note": "Босс только после ключа, провала переговоров и главного квеста; бой только в изометрии.",
+      "evidence": "game/js/game.js; game/js/story.js; game/js/iso.js"
+    },
+    {
+      "id": "V020",
+      "title": "Метательные враги и пощада культиста",
+      "status": "done",
+      "priority": 9,
+      "acceptance": "Часть врагов кидает предметы; культист при низком HP просит пощаду, пощада восстанавливает внимание, даёт 2 валюты и повышает сложность следующего уровня.",
+      "files": [
+        "game/js/platformer.js",
+        "game/js/entities.js",
+        "game/js/game.js"
+      ],
+      "verified": true,
+      "note": "Метательные снаряды у культиста/носителя/проповедника; пощада культиста, +2 валюты, рост сложности.",
+      "evidence": "game/js/platformer.js; game/js/entities.js; game/js/game.js"
+    },
+    {
+      "id": "V021",
+      "title": "Стол крафта в изометрической комнате",
+      "status": "done",
+      "priority": 5,
+      "acceptance": "Крафт только у стола, столы случайно в изо-комнатах, взаимодействие тратит заряд батарейки фонарика.",
+      "files": [
+        "game/js/ui.js",
+        "game/js/iso.js",
+        "game/js/game.js"
+      ],
+      "verified": true,
+      "note": "Стол крафта в изо-комнатах, случайное появление, стоимость 5% заряда фонаря.",
+      "evidence": "game/js/ui.js; game/js/iso.js; game/js/game.js"
+    },
+    {
+      "id": "V022",
+      "title": "Пул правок 2.1: инвентарь, торговля, ассеты, камеры, запись, катсцены",
+      "status": "done",
+      "verified": true,
+      "note": "22 пункта: мультимагазины, выброс на пол, защита от потери при нехватке места, торговля сеткой, реплики, визуальные катсцены, ассеты, камеры, запись, RPS, размеры оружия, стресс, успокоительное, лифт, ключи боссов, крафт, чертёж Игната.",
+      "files": [
+        "game/js/"
+      ]
+    },
+    {
+      "id": "V023",
+      "title": "Перезарядка и объединение патронов",
+      "status": "done",
+      "verified": true,
+      "note": "Исправлен undefined-тип магазина; клик по патрону-получателю и патрону-источнику объединяет стаки; drag&drop; 3+32=35.",
+      "files": [
+        "game/js/game.js",
+        "game/js/ui.js"
+      ]
+    }
+  ],
+  "priorityOrder": [
+    "V001",
+    "V002",
+    "V003",
+    "V011",
+    "V010",
+    "V013",
+    "V014",
+    "V015",
+    "V016",
+    "V021",
+    "V019",
+    "V018",
+    "V020",
+    "V017",
+    "V009",
+    "V004",
+    "V005",
+    "V006",
+    "V007",
+    "V008",
+    "V012"
+  ]
+}

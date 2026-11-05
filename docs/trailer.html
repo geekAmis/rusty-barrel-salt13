@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>RB Trailer 2.1</title>
+<style>
+  html,body{margin:0;background:#000;overflow:hidden}
+  canvas{display:block;width:1280px;height:720px}
+</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+(async function () {
+  const cv = document.getElementById('c');
+  const ctx = cv.getContext('2d');
+  const files = [
+    'screenshots/trailer2/01_menu.png',
+    'screenshots/trailer2/02_game.png',
+    'screenshots/trailer2/03_inventory.png',
+    'screenshots/trailer2/04_trade.png',
+    'screenshots/trailer2/05_dialog.png',
+    'screenshots/trailer2/06_cutscene.png',
+    'screenshots/trailer2/07_boss.png',
+    'screenshots/trailer2/08_map.png',
+    'screenshots/trailer2/09_stash.png',
+    'screenshots/trailer2/10_ending.png'
+  ];
+  const imgs = [];
+  for (const f of files) {
+    const im = new Image();
+    im.src = f;
+    try { await im.decode(); } catch (e) {}
+    imgs.push(im);
+  }
+
+  const caps = [
+    ['РЖАВАЯ БОЧКА', 'СОЛЬ-13 · ALPHA 2.1'],
+    ['СМЕНА НЕ ЗАКАНЧИВАЕТСЯ', '1994 · ОСТРОВ КРУТОЙ'],
+    ['ОДИН СТИК', 'ДВИЖЕНИЕ И ПРИЦЕЛ'],
+    ['ИНВЕНТАРЬ', 'СЕТКА, ВЕС, ЭКИПИРОВКА'],
+    ['ТОРГОВЛЯ', 'ПРЕДМЕТЫ, А НЕ КНОПКИ'],
+    ['STALKER-ДИАЛОГИ', 'ПОРТРЕТЫ · РЕПЛИКИ · ВЫБОР'],
+    ['КАТСЦЕНЫ', 'СПРАЙТЫ · СВЕТ · ТЕКСТ'],
+    ['БОСС', 'ТОЛЬКО В ИЗОМЕТРИИ'],
+    ['КАРТА', 'ТУМАН ВОЙНЫ'],
+    ['ТАЙНИКИ', 'ОТМЫЧКА · РИСК · ЛУТ'],
+    ['ТИХИЙ БЕРЕГ', '4 КОНЦОВКИ · NG+ · 21+']
+  ];
+  const starts = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
+  const segment = 4;
+  const total = 44;
+
+  function cover(img, zoom, dx, dy) {
+    if (!img || !img.width) return;
+    const s = Math.max(cv.width / img.width, cv.height / img.height) * zoom;
+    const w = img.width * s, h = img.height * s;
+    ctx.drawImage(img, (cv.width - w) / 2 + dx, (cv.height - h) / 2 + dy, w, h);
+  }
+  function center(text, y, size, color, spacing) {
+    ctx.save();
+    ctx.font = '700 ' + size + 'px Georgia, serif';
+    ctx.fillStyle = color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,0.95)';
+    ctx.shadowBlur = 14;
+    if (spacing) {
+      const chars = [...text];
+      const widths = chars.map((c) => ctx.measureText(c).width + spacing);
+      let x = cv.width / 2 - widths.reduce((a, b) => a + b, 0) / 2;
+      for (let i = 0; i < chars.length; i++) { ctx.fillText(chars[i], x + widths[i] / 2, y); x += widths[i]; }
+    } else ctx.fillText(text, cv.width / 2, y);
+    ctx.restore();
+  }
+
+  const stream = cv.captureStream(30);
+  const types = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'];
+  const mime = types.find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || '';
+  let rec = null;
+  try { rec = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 5000000 } : undefined); } catch (e) { window.__trailerError = String(e); }
+  const chunks = [];
+  if (rec) {
+    rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
+    rec.onstop = () => {
+      const blob = new Blob(chunks, { type: mime || 'video/webm' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'rusty-barrel-trailer-2.1.webm';
+      document.body.appendChild(a); a.click();
+      window.__trailerSize = blob.size;
+      window.__trailerDone = true;
+    };
+    rec.start(250);
+  }
+
+  const t0 = performance.now();
+  let lastJump = 0;
+  function frame(now) {
+    const t = Math.min(total, (now - t0) / 1000);
+    ctx.fillStyle = '#050403'; ctx.fillRect(0, 0, cv.width, cv.height);
+
+    let idx = 0;
+    for (let i = 0; i < starts.length; i++) if (t >= starts[i]) idx = i;
+    const local = t - starts[idx];
+    const p = Math.min(1, local / segment);
+
+    if (idx === 0) {
+      ctx.fillStyle = '#070605'; ctx.fillRect(0, 0, cv.width, cv.height);
+      // ржавые полосы
+      ctx.fillStyle = 'rgba(120,60,30,0.12)';
+      for (let i = 0; i < 12; i++) ctx.fillRect(0, (i * 97 + t * 20) % cv.height, cv.width, 2);
+    } else {
+      const im = imgs[idx - 1];
+      const zoom = 1.04 + p * 0.10;
+      const dx = (idx % 2 ? -1 : 1) * (p * 22 - 11);
+      const dy = idx === 7 ? Math.sin(t * 8) * 2 : (p * 10 - 5);
+      cover(im, zoom, dx, dy);
+      ctx.fillStyle = 'rgba(0,0,0,' + (idx === 1 ? 0.38 : 0.30) + ')';
+      ctx.fillRect(0, 0, cv.width, cv.height);
+    }
+
+    // сканлайны
+    ctx.fillStyle = 'rgba(0,0,0,0.10)';
+    for (let y = 0; y < cv.height; y += 3) ctx.fillRect(0, y, cv.width, 1);
+
+    // виньетка
+    const vg = ctx.createRadialGradient(cv.width / 2, cv.height / 2, 160, cv.width / 2, cv.height / 2, 760);
+    vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,0.78)');
+    ctx.fillStyle = vg; ctx.fillRect(0, 0, cv.width, cv.height);
+
+    // титры
+    const cap = caps[idx];
+    const fade = Math.min(1, local / 0.45) * Math.min(1, (starts[idx] + segment - t) / 0.45);
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, fade);
+    if (idx === 0 || idx === 10) {
+      center(cap[0], 300, idx === 0 ? 92 : 78, '#e8dcc2', 12);
+      center(cap[1], 382, 22, '#c9a05a', 8);
+    } else {
+      center(cap[0], 558, 36, '#e8dcc2', 3);
+      center(cap[1], 604, 16, '#c9a05a', 5);
+    }
+    ctx.restore();
+
+    // нижняя плашка
+    ctx.fillStyle = 'rgba(0,0,0,0.58)'; ctx.fillRect(0, cv.height - 38, cv.width, 38);
+    ctx.font = '14px "Courier New", monospace'; ctx.fillStyle = '#c9a05a'; ctx.textAlign = 'left';
+    ctx.fillText('РЖАВАЯ БОЧКА: СОЛЬ-13 · 21+ · КРОВЬ · СОЛЬ', 26, cv.height - 14);
+    ctx.textAlign = 'right';
+    ctx.fillText('ALPHA 2.1 · 2026', cv.width - 26, cv.height - 14);
+
+    if (t < total) requestAnimationFrame(frame);
+    else setTimeout(() => { if (rec && rec.state !== 'inactive') rec.stop(); }, 600);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

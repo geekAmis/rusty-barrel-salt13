@@ -1,0 +1,79 @@
+{
+  "version": "3.0",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "tasks": [
+    {
+      "id": "W001",
+      "title": "Новый сюжетный слой: почта, консоли, копии инспектора",
+      "status": "done",
+      "verified": true,
+      "note": "Служебная почта на каждом уровне (3 письма), консоль смены, журналы shift.exe/salt13.sys/inspector_copy. Тексты глав дополнены.",
+      "files": ["game/js/terminals.js", "game/js/story.js"]
+    },
+    {
+      "id": "W002",
+      "title": "Расширенные диалоги и открывающиеся вопросы NPC",
+      "status": "done",
+      "verified": true,
+      "note": "У 8 NPC по 3 новых вопроса с require-флагами (mail_read, console_hacked, secret_1) + общие вопросы о терминалах и консоли.",
+      "files": ["game/js/terminals.js", "game/js/ui.js"]
+    },
+    {
+      "id": "W003",
+      "title": "Ключ-карты в тайных комнатах и награда консоли",
+      "status": "done",
+      "verified": true,
+      "note": "keycard_1…5 всегда в тайной комнате главы; консоль требует карту, запускает hack-мини-игру и даёт 15 талонов + 3 соли-13, карта расходуется.",
+      "files": ["game/js/game.js", "game/js/platformer.js", "game/js/minigames.js", "game/js/items.js"]
+    },
+    {
+      "id": "W004",
+      "title": "Покупка при полном инвентаре падает на пол",
+      "status": "done",
+      "verified": true,
+      "note": "buyItem и NPC-торговля больше не отменяют покупку: предмет создаётся на полу рядом с игроком, деньги списываются, товар отмечается проданным.",
+      "files": ["game/js/game.js"]
+    },
+    {
+      "id": "W005",
+      "title": "Выбрасывание предмета падает на пол",
+      "status": "done",
+      "verified": true,
+      "note": "dropItemNear спавнит предмет в 46–88 px, проверяет стены и пол, ставит задержку подбора 0.9 с и анимацию падения.",
+      "files": ["game/js/game.js", "game/js/render.js", "game/js/pixel-render.js"]
+    },
+    {
+      "id": "W006",
+      "title": "Точные PNG-иконки предметов и одежды",
+      "status": "done",
+      "verified": true,
+      "note": "Явные iconFile/iconSvg для ключей, аптечек, обезбола, патронов, магазинов, РПС 1–4, пончо, штанов (горка/флора/город/песок/зелёный) и берцев. Патроны <15 шт. показываются одиночным патроном.",
+      "files": ["game/js/items.js", "game/js/assets.js", "game/assets/icons"]
+    },
+    {
+      "id": "W007",
+      "title": "Динамический PNG-портрет героя",
+      "status": "done",
+      "verified": true,
+      "note": "7 PNG-лиц по целостности, лицо ломки при HP >50%, лицо действия соли-13 перебивает остальные. Портрет в инвентаре и паузе.",
+      "files": ["game/js/assets.js", "game/js/ui.js", "game/assets/portraits"]
+    },
+    {
+      "id": "W008",
+      "title": "Пасхалка Mario: прыжок на голову",
+      "status": "done",
+      "verified": true,
+      "note": "При падении на голову врага наносится урон, враг отбрасывается, игрок отскакивает, есть частицы и тост.",
+      "files": ["game/js/platformer.js"]
+    },
+    {
+      "id": "W009",
+      "title": "Пасхалка One Punch Man и прокачка силы ноги",
+      "status": "done",
+      "verified": true,
+      "note": "В развитие добавлена «СИЛА НОГИ +25%», максимум 4 уровня. На 4-м уровне герой лысеет и получает красный плащ, удар ногой усиливается.",
+      "files": ["game/js/game.js", "game/js/ui.js", "game/js/entities.js", "game/js/pixel-render.js", "game/js/render.js"]
+    }
+  ]
+}

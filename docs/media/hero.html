@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1600px; height: 800px; overflow: hidden; background: #070806; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #e8dcc2;
+    background:
+      radial-gradient(circle at 14% 12%, rgba(197,106,53,0.22), transparent 42%),
+      radial-gradient(circle at 82% 80%, rgba(127,174,134,0.16), transparent 46%),
+      linear-gradient(135deg, #0b0c09 0%, #12130f 55%, #070806 100%);
+  }
+  .grain {
+    position: absolute; inset: 0; opacity: .18; pointer-events: none;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 4px);
+  }
+  .scan { position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.12) 3px 4px); }
+  .wrap { position: relative; display: flex; width: 100%; height: 100%; padding: 64px 72px 58px; gap: 30px; }
+  .left { width: 54%; display: flex; flex-direction: column; justify-content: center; z-index: 2; }
+  .kicker { font: 700 13px/1 'Courier New', monospace; letter-spacing: .42em; color: #c9a05a; margin-bottom: 22px; }
+  h1 { margin: 0; font-size: 116px; line-height: .84; letter-spacing: .02em; color: #e8dcc2; text-shadow: 0 6px 30px rgba(0,0,0,.85); }
+  h1 span { color: #c56a35; }
+  .salt { margin-top: 8px; font: 700 36px/1 'Courier New', monospace; letter-spacing: .52em; color: #8a2a1e; text-shadow: 0 0 22px rgba(163,39,27,.35); }
+  .tagline { max-width: 760px; margin: 30px 0 26px; font-size: 22px; line-height: 1.5; color: #cfc4a8; }
+  .tagline b { color: #e8dcc2; font-weight: 700; }
+  .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tags span { font: 700 12px/1 'Courier New', monospace; letter-spacing: .12em; padding: 9px 12px; border: 1px solid rgba(201,160,90,.5); color: #c9a05a; background: rgba(0,0,0,.35); }
+  .tags span.red { border-color: rgba(163,39,27,.75); color: #d8452a; }
+  .foot { position: absolute; left: 74px; bottom: 22px; font: 12px/1 'Courier New', monospace; letter-spacing: .28em; color: #8a7a5a; }
+  .right { position: relative; width: 46%; z-index: 1; }
+  .shot { position: absolute; border: 1px solid rgba(201,160,90,.42); box-shadow: 0 26px 70px rgba(0,0,0,.72), 0 0 0 6px rgba(10,10,8,.55); object-fit: cover; }
+  .a { width: 675px; height: 303px; right: 0; top: 92px; transform: rotate(1.4deg); z-index: 3; }
+  .b { width: 675px; height: 303px; right: 22px; top: 432px; transform: rotate(-1.2deg); z-index: 2; }
+  .vignette { position: absolute; inset: 0; box-shadow: inset 0 0 180px 70px #050504; pointer-events: none; }
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="wrap">
+    <div class="left">
+      <div class="kicker">21+ · МОБИЛЬНЫЙ ХОРРОР · ОСТРОВ КРУТОЙ, 1994</div>
+      <h1>РЖАВАЯ<br><span>БОЧКА</span></h1>
+      <div class="salt">СОЛЬ-13</div>
+      <div class="tagline">Завод не закрывается. Он <b>оформляет</b>. Один стик, тарковский инвентарь, STALKER-диалоги и терминалы, которые помнят больше, чем ты.</div>
+      <div class="tags">
+        <span>WebView + Canvas 2D</span><span>Vanilla JS</span><span>93/93 e2e</span><span class="red">21+ · кровь · соль</span>
+      </div>
+    </div>
+    <div class="right">
+      <img class="shot a" src="/docs/media/mail.png" alt="Служебная почта">
+      <img class="shot b" src="/docs/media/console.png" alt="Взлом консоли">
+    </div>
+  </div>
+  <div class="scan"></div>
+  <div class="vignette"></div>
+  <div class="foot">РЖАВАЯ БОЧКА: СОЛЬ-13 · ALPHA 2.2.0 · GEEKAMIS</div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#070605">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Ржавая Бочка</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="game"></canvas>
+
+  <!-- ================= HUD ================= -->
+  <div id="hud" class="hidden">
+    <div id="objective">
+      <div class="obj-title" id="obj-title">ЗАДАЧА</div>
+      <ul id="obj-list"></ul>
+    </div>
+
+    <div id="hud-stamp">НАРЯД 13<span>ОСТРОВ КРУТОЙ</span></div>
+
+    <div id="room-label"></div>
+
+    <div id="bars">
+      <div class="bar"><div class="bar-fill hp" id="bar-hp"></div><span class="bar-label" id="hud-hp">ЦЕЛОСТНОСТЬ</span></div>
+      <div class="bar small"><div class="bar-fill stamina" id="bar-stamina"></div><span class="bar-label" id="hud-stamina">ДЫХАНИЕ</span></div>
+      <div class="bar small"><div class="bar-fill battery" id="bar-battery"></div><span class="bar-label" id="hud-battery">ФОНАРЬ</span></div>
+      <div class="bar small attention"><div class="bar-fill attention" id="bar-attention"></div><span class="bar-label" id="hud-attention">СТРЕСС</span></div>
+    </div>
+
+    <div id="tokens">ТАЛОНЫ: 6</div>
+
+    <div id="ammo">
+      <div id="ammo-count">6<span>/12</span></div>
+      <div class="ammo-label" id="weapon-label">ПМ</div>
+    </div>
+
+    <div id="prompt" class="hidden"></div>
+    <div id="subtitle"></div>
+    <div id="toast"></div>
+  </div>
+
+  <!-- ================= Экранные кнопки ================= -->
+  <div id="touch-controls" class="hidden">
+    <button id="btn-light" class="tbtn" type="button" aria-label="Фонарь"><span>ФОНАРЬ</span></button>
+    <button id="btn-reload" class="tbtn" type="button" aria-label="Перезарядка"><span>ПЕРЕЗАРЯД</span></button>
+    <button id="btn-melee" class="tbtn" type="button" aria-label="Удар"><span>УДАР</span></button>
+    <button id="btn-record" class="tbtn" type="button" aria-label="Запись времени"><span>ЗАПИСЬ</span></button>
+    <button id="btn-weapon" class="tbtn" type="button" aria-label="Сменить оружие"><span>ОРУЖИЕ</span></button>
+    <button id="btn-pause" class="tbtn" type="button" aria-label="Пауза"><span>||</span></button>
+    <button id="btn-jump" class="tbtn big" type="button" aria-label="Прыжок"><span>ПРЫЖОК</span></button>
+    <button id="btn-fire" class="tbtn big" type="button" aria-label="Выстрел"><span>ВЫСТРЕЛ</span></button>
+  </div>
+
+  <!-- ================= Главное меню ================= -->
+  <div id="menu" class="screen">
+    <div class="menu-inner">
+      <div class="menu-tag">ВИК · ОСТРОВ КРУТОЙ · 1994</div>
+      <h1 class="game-title">РЖАВАЯ<br>БОЧКА</h1>
+      <div class="menu-quote">«Смена не заканчивается.<br>Она просто переходит на следующую.»</div>
+      <div class="menu-buttons">
+        <button id="btn-continue" class="menu-btn hidden" type="button">ПРОДОЛЖИТЬ СМЕНУ</button>
+        <button id="btn-ngplus" class="menu-btn hidden" type="button">НОВАЯ СМЕНА+</button>
+        <button id="btn-new" class="menu-btn" type="button">НОВАЯ СМЕНА</button>
+        <button id="btn-settings" class="menu-btn" type="button">НАСТРОЙКИ</button>
+        <button id="btn-about" class="menu-btn" type="button">АРХИВ</button>
+      </div>
+      <div class="menu-foot">21+ · кровь · соль · канцелярия</div>
+    </div>
+  </div>
+
+  <!-- ================= Универсальное окно ================= -->
+  <div id="modal" class="screen hidden">
+    <div class="modal-inner">
+      <div id="modal-kicker" class="modal-kicker"></div>
+      <h2 id="modal-title" class="modal-title"></h2>
+      <div id="modal-subtitle" class="modal-subtitle"></div>
+      <div id="modal-text" class="modal-text"></div>
+      <div id="modal-buttons" class="modal-buttons"></div>
+      <div id="modal-hint" class="modal-hint">нажмите, чтобы продолжить</div>
+    </div>
+  </div>
+
+  <!-- ================= Пауза ================= -->
+  <div id="pause" class="screen hidden">
+    <div class="modal-inner">
+      <div class="modal-kicker" id="pause-kicker">ДЕЛО ПРИОСТАНОВЛЕНО</div>
+      <h2 class="modal-title" id="pause-title">АРХИВ ЖДЁТ</h2>
+      <div id="pause-stats" class="pause-stats"></div>
+      <div class="modal-buttons">
+        <button id="btn-resume" class="menu-btn" type="button">ПРОДОЛЖИТЬ</button>
+        <button id="btn-map" class="menu-btn" type="button">КАРТА</button>
+        <button id="btn-inv" class="menu-btn" type="button">ИНВЕНТАРЬ</button>
+        <button id="btn-dev" class="menu-btn" type="button">РАЗВИТИЕ</button>
+        <button id="btn-pause-settings" class="menu-btn" type="button">НАСТРОЙКИ</button>
+        <button id="btn-pause-menu" class="menu-btn" type="button">В ГЛАВНОЕ МЕНЮ</button>
+      </div>
+      <div id="pause-seed" class="pause-seed"></div>
+    </div>
+  </div>
+
+  <!-- ================= Инвентарь (Tarkov) ================= -->
+  <div id="inv-screen" class="screen hidden">
+    <div class="inv-inner">
+      <div id="inv-body"></div>
+    </div>
+  </div>
+
+  <!-- ================= Карта с туманом войны ================= -->
+  <div id="map-screen" class="screen hidden">
+    <canvas id="map-canvas"></canvas>
+    <div class="map-top">
+      <div class="map-kicker">СХЕМА ОБЪЕКТА · ТУМАН ВОЙНЫ</div>
+      <div id="map-objective" class="map-objective"></div>
+    </div>
+    <div class="map-tools">
+      <button id="map-minus" type="button">−</button>
+      <button id="map-plus" type="button">+</button>
+      <button id="map-center" type="button">◎</button>
+      <button id="map-close" type="button">ЗАКРЫТЬ</button>
+    </div>
+    <div id="map-foot" class="map-foot">Нажми на комнату. Перетаскивай карту. Колесо/кнопки — зум.</div>
+  </div>
+
+  <!-- ================= Торговля ================= -->
+  <div id="trade-screen" class="screen hidden">
+    <div class="trade-inner">
+      <div id="trade-body"></div>
+    </div>
+  </div>
+
+  <!-- ================= Настройки ================= -->
+  <div id="settings" class="screen hidden">
+    <div class="modal-inner">
+      <div class="modal-kicker" id="settings-kicker">НАСТРОЙКИ</div>
+      <h2 class="modal-title" id="settings-title">СЛУХ И ЗРЕНИЕ</h2>
+      <div class="settings-row">
+        <label id="label-lang" for="lang">Язык</label>
+        <button id="lang" class="toggle-btn" type="button">РУССКИЙ</button>
+      </div>
+      <div class="settings-row">
+        <label id="label-vol" for="vol">Громкость</label>
+        <input id="vol" type="range" min="0" max="100" value="80">
+      </div>
+      <div class="settings-row">
+        <label id="label-qual" for="qual">Качество графики</label>
+        <button id="qual" class="toggle-btn" type="button">ВЫСОКОЕ</button>
+      </div>
+      <div class="settings-row">
+        <label id="label-vib" for="vib">Вибрация</label>
+        <button id="vib" class="toggle-btn" type="button">ВКЛ</button>
+      </div>
+      <div class="settings-row">
+        <label id="label-voice" for="voice">Голос героя</label>
+        <button id="voice" class="toggle-btn" type="button">ВКЛ</button>
+      </div>
+      <div class="settings-row">
+        <label id="label-contrast" for="contrast">Высокий контраст</label>
+        <button id="contrast" class="toggle-btn" type="button">ВЫКЛ</button>
+      </div>
+      <div class="settings-row">
+        <label id="label-motion" for="motion">Меньше тряски</label>
+        <button id="motion" class="toggle-btn" type="button">ВЫКЛ</button>
+      </div>
+      <div class="modal-buttons">
+        <button id="btn-layout" class="menu-btn" type="button">РАСПОЛОЖЕНИЕ КНОПОК</button>
+        <button id="btn-crash" class="menu-btn" type="button">ОТЧЁТ ОБ ОШИБКЕ</button>
+        <button id="btn-settings-close" class="menu-btn" type="button">НАЗАД</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="vn" class="hidden">
+    <div class="vn-scene"></div>
+    <canvas id="vn-portrait" width="420" height="520"></canvas>
+    <div class="vn-doc">
+      <div class="vn-code" id="vn-code"></div>
+      <h3 id="vn-title"></h3>
+      <div class="vn-text" id="vn-text"></div>
+    </div>
+    <div class="vn-dialog">
+      <div class="vn-name">КИРИЛЛ САВИН · 34 ГОДА · ИНСПЕКТОР</div>
+      <div class="vn-line" id="vn-line"></div>
+      <div class="vn-actions">
+        <button id="vn-close" class="menu-btn primary" type="button">ЗАКРЫТЬ</button>
+        <button id="vn-voice" class="menu-btn" type="button">ГОЛОС: ВКЛ</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="minigame" class="screen hidden">
+    <div class="mg-inner">
+      <div class="mg-head">
+        <div id="mg-kicker" class="modal-kicker"></div>
+        <h2 id="mg-title" class="modal-title"></h2>
+      </div>
+      <div id="mg-body" class="mg-body"></div>
+      <div id="mg-foot" class="mg-foot"></div>
+    </div>
+  </div>
+
+  <div id="layout-editor" class="hidden">
+    <div class="layout-top">
+      <div class="layout-title">РАСПОЛОЖЕНИЕ КНОПОК</div>
+      <div class="layout-hint">Перетащи кнопки пальцем. Настройка сохранится на этом устройстве.</div>
+    </div>
+    <div class="layout-actions">
+      <button id="btn-layout-save" class="menu-btn primary" type="button">СОХРАНИТЬ</button>
+      <button id="btn-layout-reset" class="menu-btn" type="button">СБРОС</button>
+      <button id="btn-layout-cancel" class="menu-btn" type="button">ОТМЕНА</button>
+    </div>
+  </div>
+
+  <div id="fade" class="hidden"></div>
+  <div id="rotate-hint">Поверните устройство горизонтально</div>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/version.js"></script>
+<script src="js/util.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/input.js"></script>
+<script src="js/gen.js"></script>
+<script src="js/story.js"></script>
+<script src="js/story-en.js"></script>
+<script src="js/terminals.js"></script>
+<script src="js/cutscene.js"></script>
+<script src="js/weapons.js"></script>
+<script src="js/items.js"></script>
+<script src="js/entities.js"></script>
+<script src="js/render.js"></script>
+<script src="js/platformer.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/pixel-render.js"></script>
+<script src="js/iso.js"></script>
+<script src="js/minigames.js"></script>
+<script src="js/map.js"></script>
+<script src="js/deathanim.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/debug.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

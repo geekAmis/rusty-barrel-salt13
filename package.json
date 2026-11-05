@@ -1,0 +1,35 @@
+{
+  "name": "rusty-barrel-salt13",
+  "version": "2.2.0",
+  "private": true,
+  "description": "РЖАВАЯ БОЧКА: СОЛЬ-13 — мобильный 2.5D хоррор-экшен на заброшенном рыбзаводе. WebView + Canvas 2D, тарковский инвентарь, STALKER-диалоги, терминалы, 4 концовки.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node tools/serve.mjs 8123",
+    "test": "node tools/e2e.mjs",
+    "test:story": "node tools/test-story.mjs",
+    "test:platform": "node tools/test-platform.mjs 200",
+    "build:apk": "powershell -ExecutionPolicy Bypass -File tools/build-apk.ps1 -Release -Alpha"
+  },
+  "keywords": [
+    "game",
+    "javascript",
+    "canvas",
+    "mobile-game",
+    "horror",
+    "2d-game",
+    "android",
+    "webview",
+    "stalker",
+    "tarkov",
+    "pixel-art",
+    "procedural-generation",
+    "soviet",
+    "indie-game"
+  ],
+  "author": "geekAmis",
+  "license": "MIT"
+}
