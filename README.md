@@ -172,6 +172,8 @@ http://127.0.0.1:8123
 powershell -ExecutionPolicy Bypass -File tools/build-apk.ps1 -Release -Alpha
 ```
 
+> Скрипт рассчитан на Windows + Android SDK 34 + JDK. Пути к SDK/JDK заданы в начале `tools/build-apk.ps1` — поправь под свою машину. Альтернатива: открыть папку `android/` в Android Studio и собрать `assembleRelease`.
+
 Результат:
 
 ```text
