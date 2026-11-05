@@ -245,6 +245,16 @@ roadmap-v3.json       — закрытый пул v2.2
 - ✅ **v2.2** — почта и консоли, ключ-карты в тайных комнатах, сюжет о копиях, новые вопросы NPC, PNG-иконки и портреты, Mario-стomp, One Punch Man, сила ноги.
 - 🔜 **дальше** — EN-локализация новых терминалов, больше писем и веток, плейтест 6–9 часов, публикация в RuStore.
 
+## Документация
+
+- [`docs/STORY_BIBLE.md`](docs/STORY_BIBLE.md) — мир, правила, копии инспектора, концовки.
+- [`docs/TERMINALS.md`](docs/TERMINALS.md) — почта, консоли, ключ-карты, награды, портреты, пасхалки.
+- [`docs/QA.md`](docs/QA.md) — 93/93 e2e, 47/47 матрица, что проверено руками.
+- [`docs/ASSETS.md`](docs/ASSETS.md) — откуда графика и как подключены иконки.
+- [`docs/DEVICE_MATRIX.md`](docs/DEVICE_MATRIX.md) — прогон по TECNO KL6 / Android 14.
+- [`docs/TRAILER.md`](docs/TRAILER.md) — раскадровка трейлера и пасхалки.
+- [`GODOT_EVAL.md`](GODOT_EVAL.md) — почему WebView + Canvas 2D, а не Godot.
+
 ---
 
 ## Лицензия и ассеты
