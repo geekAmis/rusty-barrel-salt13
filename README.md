@@ -18,6 +18,7 @@
   <img src="https://img.shields.io/badge/e2e-93%2F93-7fae86?style=flat-square" alt="e2e">
   <img src="https://img.shields.io/badge/device%20matrix-47%2F47-7fae86?style=flat-square" alt="device matrix">
   <img src="https://img.shields.io/badge/21%2B-кровь%20%7C%20соль-a3271b?style=flat-square" alt="21+">
+  <img src="https://img.shields.io/badge/license-MIT-c9a05a?style=flat-square" alt="MIT">
 </p>
 
 <p align="center">
