@@ -20,6 +20,14 @@
   <img src="https://img.shields.io/badge/21%2B-кровь%20%7C%20соль-a3271b?style=flat-square" alt="21+">
 </p>
 
+<p align="center">
+  <a href="https://geekamis.github.io/rusty-barrel-salt13/">▶ Играть в браузере</a>
+  &nbsp;·&nbsp;
+  <a href="docs/rusty-barrel-trailer.mp4">▶ Трейлер, 52 секунды</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/geekAmis/rusty-barrel-salt13/releases/latest">Скачать APK</a>
+</p>
+
 > «Смена не заканчивается. Она просто переходит на следующую».
 
 **РЖАВАЯ БОЧКА: СОЛЬ-13** — мобильная игра, в которой инспектор рыбнадзора приезжает закрыть завод, официально мёртвый с 1985 года. Завод закрываться не собирается: у него на инспектора свои планы — оформить на должность.
