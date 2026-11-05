@@ -5,10 +5,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
-$Sdk = "D:\Android\sdk"
-$Bt = Join-Path $Sdk "build-tools\35.0.1"
+$Sdk = if ($env:ANDROID_SDK_ROOT) { $env:ANDROID_SDK_ROOT } elseif ($env:ANDROID_HOME) { $env:ANDROID_HOME } else { "D:\Android\sdk" }
+$BtRoot = Join-Path $Sdk "build-tools"
+$Bt = if (Test-Path $BtRoot) { (Get-ChildItem $BtRoot -Directory | Sort-Object { [version]$_.Name } -Descending | Select-Object -First 1).FullName } else { Join-Path $Sdk "build-tools\35.0.1" }
 $Platform = Join-Path $Sdk "platforms\android-34\android.jar"
-$Jdk = "C:\Program Files\Java\jdk-24"
+$Jdk = if ($env:JAVA_HOME) { $env:JAVA_HOME } else { "C:\Program Files\Java\jdk-24" }
 $Javac = Join-Path $Jdk "bin\javac.exe"
 $Keytool = Join-Path $Jdk "bin\keytool.exe"
 $Java = Join-Path $Jdk "bin\java.exe"
@@ -129,7 +130,10 @@ Write-Host "OK: $OutApk ($size MB)" -ForegroundColor Green
 
 if ($IsRelease) {
     Write-Host "[AAB] proto link"
-    if (-not (Test-Path $Bundletool)) { throw "Missing bundletool: $Bundletool" }
+    if (-not (Test-Path $Bundletool)) {
+        Write-Host "[AAB] skipped: bundletool-all.jar not found (APK is ready)" -ForegroundColor Yellow
+        return
+    }
     $protoApk = Join-Path $Build "base-proto.apk"
     & (Join-Path $Bt "aapt2.exe") link `
         --proto-format `
