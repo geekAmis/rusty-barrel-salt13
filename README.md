@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://geekamis.github.io/rusty-barrel-salt13/"><img src="https://img.shields.io/badge/ИГРАТЬ_В_БРАУЗЕРЕ-7fae86?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Играть в браузере"></a>
-  <a href="https://github.com/geekAmis/rusty-barrel-salt13/releases/latest"><img src="https://img.shields.io/badge/СКАЧАТЬ_APK-2.2.0--alpha-c56a35?style=for-the-badge&logo=android&logoColor=white" alt="Скачать APK"></a>
+  <a href="https://github.com/geekAmis/rusty-barrel-salt13/releases/tag/v2.2.0-alpha"><img src="https://img.shields.io/badge/СКАЧАТЬ_APK-2.2.0--alpha-c56a35?style=for-the-badge&logo=android&logoColor=white" alt="Скачать APK"></a>
   <img src="https://img.shields.io/badge/version-2.2.0--alpha-c9a05a?style=flat-square" alt="version">
   <img src="https://img.shields.io/badge/platform-Android%207%2B%20%7C%20Web-4a5a32?style=flat-square" alt="platform">
   <img src="https://img.shields.io/badge/engine-Canvas%202D-8fa7c9?style=flat-square" alt="engine">
@@ -26,7 +26,7 @@
   &nbsp;·&nbsp;
   <a href="docs/rusty-barrel-trailer.mp4">▶ Трейлер, 52 секунды</a>
   &nbsp;·&nbsp;
-  <a href="https://github.com/geekAmis/rusty-barrel-salt13/releases/latest">Скачать APK</a>
+  <a href="https://github.com/geekAmis/rusty-barrel-salt13/releases/tag/v2.2.0-alpha">Скачать APK</a>
 </p>
 
 > «Смена не заканчивается. Она просто переходит на следующую».
