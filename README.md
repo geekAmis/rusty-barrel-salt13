@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+  <a href="https://geekamis.github.io/rusty-barrel-salt13/"><img src="https://img.shields.io/badge/ИГРАТЬ_В_БРАУЗЕРЕ-7fae86?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Играть в браузере"></a>
   <a href="https://github.com/geekAmis/rusty-barrel-salt13/releases/latest"><img src="https://img.shields.io/badge/СКАЧАТЬ_APK-2.2.0--alpha-c56a35?style=for-the-badge&logo=android&logoColor=white" alt="Скачать APK"></a>
   <img src="https://img.shields.io/badge/version-2.2.0--alpha-c9a05a?style=flat-square" alt="version">
   <img src="https://img.shields.io/badge/platform-Android%207%2B%20%7C%20Web-4a5a32?style=flat-square" alt="platform">
@@ -136,7 +137,9 @@ flowchart LR
 
 ## Быстрый старт
 
-Нужен **Node.js 20+**.
+**Играть сразу в браузере:** [geekamis.github.io/rusty-barrel-salt13](https://geekamis.github.io/rusty-barrel-salt13/)
+
+Или локально. Нужен **Node.js 20+**.
 
 ```bash
 git clone https://github.com/geekAmis/rusty-barrel-salt13.git
